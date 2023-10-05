@@ -1,4 +1,4 @@
-package com.app.base.project.contorller;
+package com.app.blog.project.domain.search.contorller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

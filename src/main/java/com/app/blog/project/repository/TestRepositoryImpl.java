@@ -1,7 +1,6 @@
-package com.app.base.project.repository;
+package com.app.blog.project.repository;
 
-import com.app.base.project.entity.Test;
-import com.querydsl.jpa.JPQLQuery;
+import com.app.blog.project.entity.SearchKeyword;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,15 +10,15 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
 public class TestRepositoryImpl extends QuerydslRepositorySupport implements TestRepositoryCustom {
     public TestRepositoryImpl() {
-        super(Test.class);
+        super(SearchKeyword.class);
     }
 
-    @Override
-    public Page<Test> findByMemo(String memo) {
-        Pageable page = PageRequest.of(0, 10);
-//        JPQLQuery<Test> baseQuery = from(todo1);
-        return null;
-    }
+//    @Override
+//    public Page<Test> findByMemo(String memo) {
+//        Pageable page = PageRequest.of(0, 10);
+////        JPQLQuery<Test> baseQuery = from(todo1);
+//        return null;
+//    }
 
 //    @Override
 //    public Page<Todo> findByTodoLike(TodoDto.Search searchDto) {

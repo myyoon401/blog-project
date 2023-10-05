@@ -1,4 +1,4 @@
-package com.app.base.project;
+package com.app.blog.project;
 
 import org.springframework.boot.SpringApplication;
 

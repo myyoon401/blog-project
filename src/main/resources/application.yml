@@ -1,7 +1,13 @@
 server:
   port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
 
 spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE}
   datasource:
     driver-class-name: org.h2.Driver
     username: sa
@@ -29,4 +35,10 @@ spring:
   jackson:
     serialization:
       write-dates-as-timestamps: false
+
+service:
+  kakao:
+    auth: ${KAKAO_KEY}
+    url: ${KAKAO_URL}
+
 
