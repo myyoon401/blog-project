@@ -1,4 +1,4 @@
-package com.app.blog.project.type;
+package com.app.blog.project.common.type;
 
 public enum SearchSourceType {
     KAKAO,

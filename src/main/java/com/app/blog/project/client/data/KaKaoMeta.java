@@ -17,4 +17,8 @@ public class KaKaoMeta {
     private Integer totalCount;
     private Integer pageableCount;
     private Boolean isEnd;
+
+    public int getTotalPage(Integer size) {
+        return pageableCount / size + 1;
+    }
 }

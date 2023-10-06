@@ -1,8 +1,6 @@
-package com.app.blog.project.client.data;
+package com.app.blog.project.domain.search.dto;
 
-import com.app.blog.project.common.config.DefaultInstantDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,15 +10,17 @@ import java.time.OffsetDateTime;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class KakaoSearchBlogDocument {
+public class SearchBlogRes {
     private String title;
     private String contents;
     private String url;
-    private String blogname;
+    private String blogName;
     private String thumbnail;
-    @JsonDeserialize(using = DefaultInstantDeserializer.class)
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-    private OffsetDateTime datetime;
+    private OffsetDateTime dateTime;
+
+    public static SearchBlogRes of(String title, String contents, String url, String blogName, String thumbnail, OffsetDateTime dateTime) {
+        return new SearchBlogRes(title, contents, url, blogName, thumbnail, dateTime);
+    }
 }

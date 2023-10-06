@@ -1,43 +1,32 @@
 package com.app.blog.project.domain.search.service;
 
-import com.app.blog.project.client.KakaoClient;
-import com.app.blog.project.client.data.KakaoSearchBlogRes;
+import com.app.blog.project.client.data.BlogSearchReq;
+import com.app.blog.project.client.data.BlogSearchRes;
+import com.app.blog.project.client.service.BlogSearchFactory;
+import com.app.blog.project.common.dto.PageRes;
+import com.app.blog.project.domain.keyword.service.KeywordService;
 import com.app.blog.project.domain.search.dto.SearchBlogReq;
-import com.app.blog.project.entity.SearchKeyword;
-import com.app.blog.project.repository.SearchKeywordRepository;
-import com.app.blog.project.type.SearchSourceType;
-import com.app.blog.project.type.SortType;
-import com.app.blog.project.utils.JsonUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
-
-import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
 public class SearchService {
-    private final KakaoClient kakaoClient;
-    private final SearchKeywordRepository keywordRepository;
+    private final BlogSearchFactory blogSearchFactory;
+    private final KeywordService keywordService;
 
-    public KakaoSearchBlogRes searchBlog(SearchBlogReq req) {
-        KakaoSearchBlogRes res = null;
-        try {
-            res = JsonUtils.readValue(kakaoClient.searchBlog(req.getSearchKeyword(), null, null, null), KakaoSearchBlogRes.class);
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-        saveKeyword(req.getKeyword());
-        return res;
-    }
+    public PageRes searchBlog(SearchBlogReq req) {
+        BlogSearchRes res = blogSearchFactory.get(req.getSource()).search(
+                BlogSearchReq.of(req.getSearchKeyword(), req.getSort().getValue(), req.getPage(), req.getSize()));
 
-    private void saveKeyword(String keyword) {
-        SearchKeyword searchKeyword = keywordRepository.findByKeyword(keyword);
-        if(ObjectUtils.isEmpty(searchKeyword)) {
-            searchKeyword = SearchKeyword.of(keyword);
-        } else {
-            searchKeyword.countUp();
-        }
-        keywordRepository.save(searchKeyword);
+        keywordService.saveKeyword(req.getKeyword());
+
+        return PageRes.of(res.getData()
+                , req.getSize()
+                , req.getPage()
+                , res.getPage().getTotalPage()
+                , res.getPage().getTotalCount()
+                , !res.getPage().getHasNext()
+        );
     }
 }

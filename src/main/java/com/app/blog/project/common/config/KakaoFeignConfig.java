@@ -1,4 +1,4 @@
-package com.app.blog.project.config;
+package com.app.blog.project.common.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

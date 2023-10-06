@@ -1,8 +1,7 @@
 package com.app.blog.project.client;
 
-import com.app.blog.project.client.data.KakaoSearchBlogRes;
 //import feign.Headers;
-import com.app.blog.project.config.KakaoFeignConfig;
+import com.app.blog.project.common.config.KakaoFeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

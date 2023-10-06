@@ -1,4 +1,4 @@
-package com.app.blog.project.utils;
+package com.app.blog.project.common.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
