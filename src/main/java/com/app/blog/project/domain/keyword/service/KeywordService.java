@@ -2,12 +2,10 @@ package com.app.blog.project.domain.keyword.service;
 
 import com.app.blog.project.domain.keyword.dto.PopularKeywordRes;
 import com.app.blog.project.domain.keyword.dto.RecentKeywordRes;
-import com.app.blog.project.domain.search.dto.SearchBlogReq;
-import com.app.blog.project.entity.SearchKeyword;
-import com.app.blog.project.repository.SearchKeywordRepository;
+import com.app.blog.project.entity.KeywordHistory;
+import com.app.blog.project.repository.KeywordHistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -20,15 +18,15 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class KeywordService {
-    private final SearchKeywordRepository keywordRepository;
+    private final KeywordHistoryRepository keywordHistoryRepository;
 
     @Transactional(readOnly = true)
     public List<PopularKeywordRes> getPopular() {
-        List<SearchKeyword> popularKeywords = keywordRepository.findAllByOrderByCountDesc(PageRequest.of(0, 10));
+        List<KeywordHistory> popularKeywords = keywordHistoryRepository.findAllByOrderByCountDesc(PageRequest.of(0, 10));
         List<PopularKeywordRes> res = new ArrayList<>();
         int rank = 1;
         int beforeCount = 0;
-        for (SearchKeyword popularKeyword : popularKeywords) {
+        for (KeywordHistory popularKeyword : popularKeywords) {
             if(beforeCount == popularKeyword.getCount()) {
                 rank -= 1;
             }
@@ -40,28 +38,28 @@ public class KeywordService {
 
     @Transactional(readOnly = true)
     public List<RecentKeywordRes> getRecent() {
-        List<SearchKeyword> popularKeywords = keywordRepository.findAllByOrderByUpdatedAtDesc(PageRequest.of(0, 10));
+        List<KeywordHistory> popularKeywords = keywordHistoryRepository.findAllByOrderByLastSearchedAtDesc(PageRequest.of(0, 10));
         List<RecentKeywordRes> res = new ArrayList<>();
         int rank = 1;
         LocalDateTime beforeDateTime = null;
-        for (SearchKeyword recentKeyword : popularKeywords) {
-            if(!ObjectUtils.isEmpty(beforeDateTime) && beforeDateTime.isEqual(recentKeyword.getUpdatedAt())) {
+        for (KeywordHistory recentKeyword : popularKeywords) {
+            if(!ObjectUtils.isEmpty(beforeDateTime) && beforeDateTime.isEqual(recentKeyword.getLastSearchedAt())) {
                 rank -= 1;
             }
-            res.add(RecentKeywordRes.of(rank++, recentKeyword.getKeyword(), recentKeyword.getUpdatedAt()));
-            beforeDateTime = recentKeyword.getUpdatedAt();
+            res.add(RecentKeywordRes.of(rank++, recentKeyword.getKeyword(), recentKeyword.getLastSearchedAt()));
+            beforeDateTime = recentKeyword.getLastSearchedAt();
         }
         return res;
     }
 
     @Transactional
     public void saveKeyword(String keyword) {
-        SearchKeyword searchKeyword = keywordRepository.findByKeyword(keyword);
-        if(ObjectUtils.isEmpty(searchKeyword)) {
-            searchKeyword = SearchKeyword.of(keyword);
+        KeywordHistory keywordHistory = keywordHistoryRepository.findByKeyword(keyword);
+        if(ObjectUtils.isEmpty(keywordHistory)) {
+            keywordHistory = KeywordHistory.of(keyword);
         } else {
-            searchKeyword.countUp();
+            keywordHistory.countUp();
         }
-        keywordRepository.save(searchKeyword);
+        keywordHistoryRepository.save(keywordHistory);
     }
 }

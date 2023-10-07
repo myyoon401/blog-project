@@ -3,6 +3,7 @@ package com.app.blog.project.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SearchKeyword {
+public class KeywordHistory {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @Column(columnDefinition = "int comment 'id'")
@@ -23,20 +24,18 @@ public class SearchKeyword {
     @Column(columnDefinition = "varchar comment '검색횟수'")
     private Integer count;
 
-    @Column(nullable = false, columnDefinition = "timestamp not null default current_timestamp comment '생성일시'")
-    private LocalDateTime createdAt;
+    @Column(nullable = false,columnDefinition = "timestamp not null default current_timestamp comment '최근검색일'")
+    @LastModifiedDate
+    private LocalDateTime lastSearchedAt;
 
-    @Column(columnDefinition = "timestamp null on update current_timestamp comment '수정일시'")
-    private LocalDateTime updatedAt;
-
-    public SearchKeyword(String keyword) {
+    public KeywordHistory(String keyword) {
         this.keyword = keyword;
         this.count = 1;
-        this.createdAt = LocalDateTime.now();
+        this.lastSearchedAt = LocalDateTime.now();
     }
 
-    public static SearchKeyword of(String keyword) {
-        return new SearchKeyword(keyword);
+    public static KeywordHistory of(String keyword) {
+        return new KeywordHistory(keyword);
     }
 
     public void countUp() {
