@@ -1,7 +1,7 @@
 package com.app.blog.project.domain.search.service;
 
-import com.app.blog.project.client.data.BlogSearchReq;
-import com.app.blog.project.client.data.BlogSearchRes;
+import com.app.blog.project.client.common.data.BlogSearchReq;
+import com.app.blog.project.client.common.data.BlogSearchRes;
 import com.app.blog.project.client.service.BlogSearchFactory;
 import com.app.blog.project.common.dto.PageRes;
 import com.app.blog.project.domain.keyword.service.KeywordService;
@@ -17,7 +17,7 @@ public class SearchService {
 
     public PageRes searchBlog(SearchBlogReq req) {
         BlogSearchRes res = blogSearchFactory.get(req.getSource()).search(
-                BlogSearchReq.of(req.getSearchKeyword(), req.getSort().getValue(), req.getPage(), req.getSize()));
+                BlogSearchReq.of(req.getSearchKeyword(), req.getSort(), req.getPage(), req.getSize()));
 
         keywordService.saveKeyword(req.getKeyword());
 

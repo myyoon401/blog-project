@@ -2,6 +2,7 @@ package com.app.blog.project.domain.search.dto;
 
 import com.app.blog.project.common.type.SearchSourceType;
 import com.app.blog.project.common.type.SortType;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.util.ObjectUtils;

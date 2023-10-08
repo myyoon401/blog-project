@@ -21,21 +21,21 @@ public class KeywordHistory {
     @Column(columnDefinition = "varchar comment '검색어'")
     private String keyword;
 
-    @Column(columnDefinition = "varchar comment '검색횟수'")
+    @Column(columnDefinition = "int comment '검색횟수'")
     private Integer count;
 
     @Column(nullable = false,columnDefinition = "timestamp not null default current_timestamp comment '최근검색일'")
     @LastModifiedDate
     private LocalDateTime lastSearchedAt;
 
-    public KeywordHistory(String keyword) {
+    public KeywordHistory(String keyword, Integer count, LocalDateTime searchedAt) {
         this.keyword = keyword;
-        this.count = 1;
-        this.lastSearchedAt = LocalDateTime.now();
+        this.count = count;
+        this.lastSearchedAt = searchedAt;
     }
 
     public static KeywordHistory of(String keyword) {
-        return new KeywordHistory(keyword);
+        return new KeywordHistory(keyword, 1, LocalDateTime.now());
     }
 
     public void countUp() {
