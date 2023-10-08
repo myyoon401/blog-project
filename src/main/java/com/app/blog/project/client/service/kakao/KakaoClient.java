@@ -1,13 +1,11 @@
-package com.app.blog.project.client;
+package com.app.blog.project.client.service.kakao;
 
-//import feign.Headers;
-import com.app.blog.project.common.config.KakaoFeignConfig;
+import com.app.blog.project.client.service.kakao.KakaoFeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "kakaoClient", url = "${service.kakao.url}", configuration = KakaoFeignConfig.class)
-//@Headers("Authorization: KakaoAK ${service.kakao.auth}")
 public interface KakaoClient {
 
     @GetMapping(value = "search/blog", produces = "application/json;charset=UTF-8")

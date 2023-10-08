@@ -40,5 +40,10 @@ service:
   kakao:
     auth: ${KAKAO_KEY}
     url: ${KAKAO_URL}
+  naver:
+    auth:
+      client-id: ${NAVER_CLIENT_ID}
+      client-secret: ${NAVER_CLIENT_SECRET}
+    url: ${NAVER_URL}
 
 

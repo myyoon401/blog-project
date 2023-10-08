@@ -1,5 +1,7 @@
 package com.app.blog.project.client.service;
 
+import com.app.blog.project.client.service.kakao.KakaoBlogSearchService;
+import com.app.blog.project.client.service.naver.NaverBlogSearchService;
 import com.app.blog.project.common.type.SearchSourceType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

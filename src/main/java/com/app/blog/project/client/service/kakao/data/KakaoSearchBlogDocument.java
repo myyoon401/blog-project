@@ -1,4 +1,4 @@
-package com.app.blog.project.client.data;
+package com.app.blog.project.client.service.kakao.data;
 
 import com.app.blog.project.common.config.DefaultInstantDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;

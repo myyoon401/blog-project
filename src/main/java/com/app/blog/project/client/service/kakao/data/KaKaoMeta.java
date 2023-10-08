@@ -1,4 +1,4 @@
-package com.app.blog.project.client.data;
+package com.app.blog.project.client.service.kakao.data;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
