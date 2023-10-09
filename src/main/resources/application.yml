@@ -7,7 +7,7 @@ server:
 
 spring:
   profiles:
-    active: ${SPRING_PROFILES_ACTIVE}
+    active: local
   datasource:
     driver-class-name: org.h2.Driver
     username: sa
@@ -38,12 +38,13 @@ spring:
 
 service:
   kakao:
-    auth: ${KAKAO_KEY}
-    url: ${KAKAO_URL}
+    auth: 0de1f2d6b9be8a5998fca860d8760e89dd
+    url: https://dapi.kakao.com/v2
   naver:
     auth:
-      client-id: ${NAVER_CLIENT_ID}
-      client-secret: ${NAVER_CLIENT_SECRET}
-    url: ${NAVER_URL}
+      client-id: alW6uYouMzkr8_F__b1e
+      client-secret: frGTlmIMog
+    url: https://openapi.naver.com/v1
+
 
 

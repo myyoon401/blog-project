@@ -47,8 +47,6 @@ public class ExceptionHandler {
         log.error(":::::::::: handleFeignException ::::::::::");
         log.error("1. URI                           : {} ", request.getRequestURI());
         log.error("2. ERROR MESSAGE                 : {} ", ex.getMessage());
-        log.error("3. EXCEPTION Trace               : {} ", ex.getStackTrace());
-        log.error("4. EXTERNAL SERVER RESPONSE      : {} ", ex.contentUTF8());
         log.error("HEADERS ");
         requestInfo(request);
 
@@ -81,5 +79,4 @@ public class ExceptionHandler {
             log.error("          {} : {}", paramName, request.getParameter(paramName));
         }
     }
-
 }
