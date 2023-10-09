@@ -38,7 +38,7 @@ spring:
 
 service:
   kakao:
-    auth: 0de1f2d6b9be8a5998fca860d8760e89dd
+    auth: 0de1f2d6b9be8a5998fca860d8760e89
     url: https://dapi.kakao.com/v2
   naver:
     auth:
