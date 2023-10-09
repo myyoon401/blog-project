@@ -1,0 +1,74 @@
+dependencies {
+    implementation project(':blog-common')
+
+//    implementation 'org.springframework.boot:spring-boot-starter'
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+//    implementation 'org.springframework.boot:spring-boot-starter-validation'
+//    implementation 'org.springframework.boot:spring-boot-starter-web'
+//    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+
+//    implementation 'io.netty:netty-resolver-dns-native-macos:4.1.68.Final:osx-aarch_64'
+
+    // java 11에서 제거되었기 때문에
+//    implementation 'org.glassfish.jaxb:jaxb-runtime'
+//    implementation 'org.modelmapper:modelmapper:3.1.0'
+//
+//    // MySql
+//    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    /** Jackson datatype **/
+//    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
+    /** unknown enum constant When.MAYBE 경고 대응 **/
+//    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+
+    /** OpenFeign **/
+//    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+//    implementation 'io.github.openfeign:feign-httpclient'
+//    implementation 'io.github.openfeign:feign-core'
+
+
+//    implementation "org.springframework.boot:spring-boot-starter-cache"
+//    implementation 'org.ehcache:ehcache:3.10.6'
+//    implementation 'javax.cache:cache-api:1.1.1'
+//    runtimeOnly 'org.glassfish.jaxb:jaxb-runtime:2.2,3'
+
+
+//    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    testImplementation 'org.testcontainers:junit-jupiter'
+//    testImplementation 'org.testcontainers:mysql'
+//    testImplementation 'io.rest-assured:rest-assured'
+
+}
+
+//apply from: 'https://raw.githubusercontent.com/huraypositive/public-resource/gradle/8.2.1/spring-boot/3.1.3/querydsl.gradle'
+
+
+//dependencies {
+//    implementation project(':blog-common')
+//
+//    /* Lombok */
+//    compileOnly 'org.projectlombok:lombok'
+//    annotationProcessor 'org.projectlombok:lombok'
+//    testCompileOnly 'org.projectlombok:lombok'
+//    testAnnotationProcessor 'org.projectlombok:lombok'
+//
+////    implementation 'com.h2database:h2:'S
+////    implementation 'org.springframework.boot:spring-boot-starter'
+////    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+////    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+////    implementation 'org.springframework.boot:spring-boot-starter-validation'
+////    implementation 'org.springframework.boot:spring-boot-starter-validation'
+////    implementation 'com.fasterxml.jackson.core:jackson-databind'
+//
+//    /** OpenFeign **/
+//    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+//    implementation 'io.github.openfeign:feign-httpclient'
+//    implementation 'io.github.openfeign:feign-core'
+//}
+
+tasks.register("prepareKotlinBuildScriptModel"){}
